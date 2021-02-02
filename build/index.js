@@ -9,20 +9,16 @@ var config_1 = require("./config");
 var client;
 function activate(context) {
     var config = new config_1.WorkspaceConfiguration();
-    // The server is implemented in node
     var binary = findBinary(config.get("sflk.serverPath"));
-    // The debug options for the server
-    // --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
-    var cmd = { command: binary, options: { env: { RUST_BACKTRACE: "1" } } };
-    // If the extension is launched in debug mode then the debug server options are used
-    // Otherwise the run options are used
+    var cmd = {
+        command: binary,
+        options: { env: { RUST_BACKTRACE: "1" } },
+    };
     var serverOptions = { run: cmd, debug: cmd };
     // Options to control the language client
     var clientOptions = {
-        // Register the server for plain text documents
         documentSelector: [{ scheme: "file", language: "sflk" }],
         synchronize: {
-            // Notify the server about file changes to '.clientrc files contained in the workspace
             fileEvents: vscode_1.workspace.createFileSystemWatcher("**/*.sflk"),
         },
     };

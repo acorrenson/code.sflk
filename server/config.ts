@@ -7,7 +7,7 @@ export interface Configuration {
 
 export class WorkspaceConfiguration {
   private _wsConfig?: vscode.WorkspaceConfiguration;
-  constructor(public readonly section?: string) {}
+  constructor(public readonly section?: string) { }
 
   public get config(): vscode.WorkspaceConfiguration {
     if (!this._wsConfig)
