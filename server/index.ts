@@ -2,7 +2,12 @@ import * as path from "path";
 import * as fs from "fs";
 import { workspace, ExtensionContext } from "vscode";
 
-import { Executable, LanguageClient, LanguageClientOptions, ServerOptions } from "vscode-languageclient";
+import {
+  Executable,
+  LanguageClient,
+  LanguageClientOptions,
+  ServerOptions,
+} from "vscode-languageclient";
 import { WorkspaceConfiguration } from "./config";
 
 let client: LanguageClient;
@@ -13,7 +18,10 @@ export function activate(context: ExtensionContext) {
   let binary = findBinary(config.get("sflk.serverPath"));
   // The debug options for the server
   // --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging
-  const cmd: Executable = { command: binary, options: { env: { RUST_BACKTRACE: "1" } } };
+  const cmd: Executable = {
+    command: binary,
+    options: { env: { RUST_BACKTRACE: "1" } },
+  };
   // If the extension is launched in debug mode then the debug server options are used
   // Otherwise the run options are used
   let serverOptions: ServerOptions = { run: cmd, debug: cmd };
@@ -29,7 +37,12 @@ export function activate(context: ExtensionContext) {
   };
 
   // Create the language client and start the client.
-  client = new LanguageClient("sflk-lsp", "Sflk LSP", serverOptions, clientOptions);
+  client = new LanguageClient(
+    "sflk-lsp",
+    "Sflk LSP",
+    serverOptions,
+    clientOptions
+  );
 
   // Start the client. This will also launch the server
   client.start();

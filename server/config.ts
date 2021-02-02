@@ -7,10 +7,11 @@ export interface Configuration {
 
 export class WorkspaceConfiguration {
   private _wsConfig?: vscode.WorkspaceConfiguration;
-  constructor(public readonly section?: string) { }
+  constructor(public readonly section?: string) {}
 
   public get config(): vscode.WorkspaceConfiguration {
-    if (!this._wsConfig) this._wsConfig = workspace.getConfiguration(this.section);
+    if (!this._wsConfig)
+      this._wsConfig = workspace.getConfiguration(this.section);
     return this._wsConfig;
   }
 
@@ -22,7 +23,10 @@ export class WorkspaceConfiguration {
     return this.config.get<Configuration[K]>(key)!;
   }
 
-  public async set<K extends keyof Configuration, V extends Configuration[K]>(key: K, value: V) {
+  public async set<K extends keyof Configuration, V extends Configuration[K]>(
+    key: K,
+    value: V
+  ) {
     await this.config.update(key, value);
   }
 }
