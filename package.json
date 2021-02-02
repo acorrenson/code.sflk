@@ -1,0 +1,25 @@
+{
+    "name": "code-sflk",
+    "displayName": "code.sflk",
+    "description": "language support for sflk",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "sflk",
+            "aliases": ["sflk", "sflk"],
+            "extensions": ["sflk","Sflk","SFLK"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "sflk",
+            "scopeName": "sflk",
+            "path": "./syntaxes/sflk.tmLanguage.json"
+        }]
+    }
+}

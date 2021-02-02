@@ -1,0 +1,55 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "sflk",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.number-sign.sflk",
+					"begin": "(#)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.sflk"
+						}
+					},
+					"end": "(?:\\n|$)"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.conditional.if.sflk",
+					"match": "\\b(if)\\b"
+				},
+				{
+					"name": "keyword.other.sflk",
+					"match": "\\b(nop|pr|nl|do|ev|redo|end|imp|exp)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.sflk",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.sflk",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "sflk"
+}
