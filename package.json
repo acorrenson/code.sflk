@@ -2,7 +2,16 @@
     "name": "code-sflk",
     "displayName": "code.sflk",
     "description": "language support for sflk",
+    "main": "build/index.js",
+    "activationEvents": [
+        "onLanguage:sflk",
+        "workspaceContains:*.sflk"
+    ],
     "version": "0.0.1",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch"
+    },
     "engines": {
         "vscode": "^1.52.0"
     },
@@ -10,16 +19,52 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "sflk",
-            "aliases": ["sflk", "sflk"],
-            "extensions": ["sflk","Sflk","SFLK"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "sflk",
-            "scopeName": "sflk",
-            "path": "./syntaxes/sflk.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "sflk",
+                "aliases": [
+                    "sflk",
+                    "sflk"
+                ],
+                "extensions": [
+                    "sflk",
+                    "Sflk",
+                    "SFLK"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "sflk",
+                "scopeName": "sflk",
+                "path": "./syntaxes/sflk.tmLanguage.json"
+            }
+        ]
+    },
+    "configuration": {
+        "title": "Settings for sflk",
+        "properties": {
+            "sflk.serverPath": {
+                "type": "string",
+                "default": "sflk-lsp",
+                "description": "Path to the LSP executable"
+            }
+        }
+    },
+    "devDependencies": {
+        "@types/node": "^14.14.8",
+        "@types/vscode": "^1.51.0",
+        "husky": "^4.3.0",
+        "prettier": "^2.1.2",
+        "typescript": "^4.0.5"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "prettier --write server/**/*.ts"
+        }
+    },
+    "dependencies": {
+        "vscode-languageclient": "^6.1.3"
     }
 }
